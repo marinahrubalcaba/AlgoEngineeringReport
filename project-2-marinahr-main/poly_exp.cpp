@@ -7,9 +7,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "poly_exp.hpp"
-#include <climits> // used for negative infinity in max subarray crossing function
-#include <cmath>   // used for pow(2,n) in subset sum exh algorithm
-#include <cstdint> // used for uint64_t in subset sum exh algorithm
+#include <climits> 
+#include <cmath> 
+#include <cstdint> 
 
 namespace subarray
 {
@@ -28,8 +28,8 @@ namespace subarray
         summed_span CurrentBest(input.begin() + b, input.begin() + e);
         summed_span PossibleBest(input.begin() + i, input.begin() + j);
 
-        if ((PossibleBest.sum()) > (CurrentBest.sum())) // used the sum accessor from the .hpp file to calculate sum of generated spans
-        {                                               // according to the .hpp file, sum calculation takes O(n) time
+        if ((PossibleBest.sum()) > (CurrentBest.sum())) 
+        {                                               
           b = i;
           e = j;
         }
@@ -40,8 +40,8 @@ namespace subarray
 
   summed_span max_subarray_crossing(const std::vector<int> &input, int low, int middle, int high)
   {
-    int leftSum = INT_MIN;  // I got this from the cplusplus manual, which says that INT_MIN produces the minimum value for an int.
-    int rightSum = INT_MIN; // I used this in place of negative infinity, as we just need a very low integer for comparison purposes
+    int leftSum = INT_MIN;  
+    int rightSum = INT_MIN; 
     int sum = 0;
     int b;
     int e;
@@ -83,8 +83,8 @@ namespace subarray
     summed_span entirelyRight = max_subarray_recurse(input, middle + 1, high);
     summed_span crossing = max_subarray_crossing(input, low, middle, high);
 
-    if (entirelyLeft.sum() >= entirelyRight.sum() && entirelyLeft.sum() >= crossing.sum()) // used sum() accessor that was in .hpp file which takes O(n) time
-    {                                                                                      // Note: Could have put these into another helper function and optimized code
+    if (entirelyLeft.sum() >= entirelyRight.sum() && entirelyLeft.sum() >= crossing.sum()) 
+    {                                                                                     
       return entirelyLeft;
     }
     else if (entirelyRight.sum() >= entirelyLeft.sum() && entirelyRight.sum() >= crossing.sum())
